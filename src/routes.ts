@@ -1,9 +1,11 @@
 import { Router } from "express";
-import { CreateUserController } from "./app/controllers/user/CreateUserController";
-import { ShowUsersController } from "./app/controllers/user/ShowUsersControlle";
+import { CreateLeadController } from "./app/controllers/lead/CreateLeadController";
+import { ListLeadController } from "./app/controllers/lead/ListLeadController";
+import { RemoveLeadController } from "./app/controllers/lead/RemoveLeadController";
 
-const createUserController = new CreateUserController();
-const showUsersController = new ShowUsersController();
+const createLeadController = new CreateLeadController();
+const listLeadController = new ListLeadController();
+const removeLeadController = new RemoveLeadController();
 
 const router = Router();
 
@@ -11,7 +13,9 @@ router.get("/api/v1", (req, res) => {
   res.json({ server: "online" });
 });
 
-router.post("/api/v1/user", createUserController.handle);
-router.get("/api/v1/user", showUsersController.handle);
+router.post("/api/v1/lead", createLeadController.handle);
+router.post("/api/v1/lead", createLeadController.handle);
+router.get("/api/v1/lead", listLeadController.handle);
+router.delete("/api/v1/lead/:id", removeLeadController.handle);
 
 export { router };

@@ -1,11 +1,10 @@
 import { Request, Response } from "express";
 import { prismaClient } from "../../../database/prismaClient";
 
-export class ShowUsersController {
+export class ListLeadController {
   async handle(request: Request, response: Response) {
+    const leaders = await prismaClient.lead.findMany({});
 
-    const users = await prismaClient.user.findMany({});
-
-    return response.json(users);
+    return response.status(200).json(leaders);
   }
 }
